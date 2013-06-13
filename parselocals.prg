@@ -733,8 +733,8 @@ Return lcSource
 Procedure RemoveErrorFile()
 ***************************
 
-This.cErrorFile = 'p:\parselocals.err'
-	
+This.cErrorFile = ADDBS(SYS(2023)) + 'parselocals.err'
+
 If Wexist(JustFname(This.cErrorFile))
 	Release Windows (JustFname(This.cErrorFile))
 endif
