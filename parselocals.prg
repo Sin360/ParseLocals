@@ -29,7 +29,7 @@ If tlRun
 Else
 	* Register the option in the tools menu
 	Define Bar 991 of _mtools Prompt '\-'
-	Define Bar 992 of _mtools Prompt 'Check \<local declarations' Key Alt+L, 'Alt+L'
+	Define Bar 992 of _mtools Prompt 'Check local \<variable declarations' Key ALT+V, 'Alt+V'
 	lcProgram = '"'+ Sys(16) + '"'
 	On Selection Bar 992 of _mtools do &lcProgram With .t.
 EndIf
@@ -717,7 +717,7 @@ Return lcSource
 Procedure RemoveErrorFile()
 ***************************
 
-This.cErrorFile = FullPath(ForceExt(Program(), 'err'))
+This.cErrorFile = 'p:\parselocals.err'
 	
 If Wexist(JustFname(This.cErrorFile))
 	Release Windows (JustFname(This.cErrorFile))
