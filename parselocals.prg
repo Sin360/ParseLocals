@@ -410,8 +410,11 @@ For lnI = 0 to lnCount - 1
 	For lnVar = 1 to lnCount
 		lcVar = laTemp1[lnVar]
 		DO Case
-		Case At('.', lcVar) > 0 and Lower(Left(lcVar, 2)) <> 'm.'
-			* This is an asignment of an object property
+		Case Lower(Left(lcVar, 2)) = 'm.'
+			* We get rid of m. prefix
+			This.AddAssignedVar(Substr(lcVar, 3), c_Variable)
+		Case At('.', lcVar) > 0
+			* This is an assignment of an object property
 		Case Left(lcVar, 1) $ '(&'
 			* Macro or named reference, ignore
 		Otherwise
