@@ -410,13 +410,22 @@ For lnI = 0 to lnCount - 1
 	For lnVar = 1 to lnCount
 		lcVar = laTemp1[lnVar]
 		DO Case
+		Case IsDigit(left(lcVar, 1))
+			* This is a not a variable
 		Case Lower(Left(lcVar, 2)) = 'm.'
 			* We get rid of m. prefix
-			This.AddAssignedVar(Substr(lcVar, 3), c_Variable)
+			lcVar = Substr(lcVar, 3)
+			* We ignore object property assignment part
+			lcVar = IIF(At('.', lcVar) > 0, Substr(lcVar, 1, At('.', lcVar) - 1), lcVar)
+			This.AddAssignedVar(lcVar, c_Variable)
+		Case Left(lcVar, 1) $ '(&.'
+			* Macro or named reference, ignore
+		Case Left(Upper(lcVar), 4) = 'THIS'
+			* This is a property assignment
 		Case At('.', lcVar) > 0
 			* This is an assignment of an object property
-		Case Left(lcVar, 1) $ '(&'
-			* Macro or named reference, ignore
+			* We keep only the object name
+			THIS.AddAssignedVar(Substr(lcVar, 1, At('.', lcVar) - 1))
 		Otherwise
 			This.AddAssignedVar(lcVar, c_Variable)
 		EndCase
