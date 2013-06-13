@@ -1,8 +1,6 @@
 * ToDo:
 * The new SET TEXTMERGE TO MEMVAR option is not detected
 
-
-
 Lparameters tlRun
 Local lcProgram, lcSource, loParser
 
