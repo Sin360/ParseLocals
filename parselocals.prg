@@ -391,7 +391,7 @@ For lnI = 0 to lnCount - 1
 EndFor
 
 * Add the FOR and FOR EACH assignments
-loRegExp.Pattern = '^For +(?:Each +)?(\w*)'
+loRegExp.Pattern = '^For +(?:Each +)?(?:m\.)?(\w*)'
 loMatches = loRegExp.Execute(lcSection)
 lnCount = loMatches.Count
 For lnI = 0 to lnCount - 1
