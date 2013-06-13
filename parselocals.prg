@@ -679,7 +679,7 @@ For lnI = lnCount - 1 to 1 Step -1
 	If Right(lcLine, 1) = ';'
 		* This is a multi line statement, move to a single line
 		lcLine = Left(lcLine, Len(lcLine) - 1)
-		lcLine = lcLine + laLines[lnI + 1]
+		lcLine = lcLine + ' ' + laLines[lnI + 1]
 		laLines[lnI + 1] = ''
 		laLines[lnI] = lcLine
 	EndIf
