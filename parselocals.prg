@@ -421,12 +421,16 @@ For lnI = 0 to lnCount - 1
 EndFor
 
 * Find assignments using SCATTER
-loRegExp.Pattern = '^scatter +(?:memo  +)?name +(\w+)'
+loRegExp.Pattern = '^scatter +(?:memo +)?name +(?:m\.)?(\w*)'
 loMatches = loRegExp.Execute(lcSection)
 lnCount = loMatches.Count
 For lnI = 0 to lnCount - 1
 	lcVar = loMatches.Item(lnI).SubMatches(0)
-	This.AddAssignedVar(lcVar, c_Variable)
+	If Proper(Left(lcVar, 4)) = 'THIS'
+		* This is an assignment of an object property
+	Else
+		This.AddAssignedVar(lcVar, c_Variable)
+	Endif
 EndFor
 
 * Find all (IN)TO ARRAY creations
