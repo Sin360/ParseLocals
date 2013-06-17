@@ -436,8 +436,8 @@ loMatches = loRegExp.Execute(lcSection)
 lnCount = loMatches.Count
 For lnI = 0 to lnCount - 1
 	lcVar = loMatches.Item(lnI).SubMatches(0)
-	If Proper(Left(lcVar, 4)) = 'THIS'
-		* This is an assignment of an object property
+	If Upper(Left(lcVar, 4)) = 'THIS'
+		* This is an assignment of a property
 	Else
 		This.AddAssignedVar(lcVar, c_Variable)
 	Endif
@@ -461,7 +461,7 @@ For lnI = 0 to lnCount - 1
 	This.AddAssignedVar(lcVar, c_Variable)
 EndFor
 
-* 2007-02-07 Adde on request of Peter Crabtree
+* 2007-02-07 Added on request of Peter Crabtree
 * Find all DO FORM NAME creations
 loRegExp.Pattern = '^do form.* NAME (?:m\.)?(\w+).*$'
 loMatches = loRegExp.Execute(lcSection)
