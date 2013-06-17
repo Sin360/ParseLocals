@@ -458,7 +458,11 @@ loMatches = loRegExp.Execute(lcSection)
 lnCount = loMatches.Count
 For lnI = 0 to lnCount - 1
 	lcVar = loMatches.Item(lnI).SubMatches(0)
-	This.AddAssignedVar(lcVar, c_Variable)
+	If Upper(Left(lcVar, 4)) = 'THIS'
+		* This is an assignment of property
+	Else
+		This.AddAssignedVar(lcVar, c_Variable)
+	Endif
 EndFor
 
 * 2007-02-07 Added on request of Peter Crabtree
